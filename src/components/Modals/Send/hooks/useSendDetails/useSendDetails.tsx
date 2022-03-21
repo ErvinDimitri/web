@@ -274,7 +274,7 @@ export const useSendDetails = (): UseSendDetailsReturnType => {
           fieldName !== SendFormFields.FiatAmount
             ? SendFormFields.FiatAmount
             : SendFormFields.CryptoAmount
-        if (inputValue === '' || Number(inputValue)===0) {
+        if (Number(inputValue) === 0) {
           // Don't show an error message when the input is empty
           setValue(SendFormFields.AmountFieldError, '')
           setLoading(false)
