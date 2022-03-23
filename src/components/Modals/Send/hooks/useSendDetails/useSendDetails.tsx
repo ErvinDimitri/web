@@ -145,6 +145,8 @@ export const useSendDetails = (): UseSendDetailsReturnType => {
 
   const handleNextClick = async () => {
     try {
+      let estimatedFees = await estimateFormFees()
+      setValue(SendFormFields.EstimatedFees, estimatedFees)
       setLoading(true)
       history.push(SendRoutes.Confirm)
     } catch (error) {
@@ -274,7 +276,7 @@ export const useSendDetails = (): UseSendDetailsReturnType => {
           fieldName !== SendFormFields.FiatAmount
             ? SendFormFields.FiatAmount
             : SendFormFields.CryptoAmount
-        if (Number(inputValue) === 0) {
+        if (inputValue === '') {
           // Don't show an error message when the input is empty
           setValue(SendFormFields.AmountFieldError, '')
           setLoading(false)
